@@ -1,15 +1,17 @@
 import React from 'react'
-import {Routes ,Route} from 'react-router-dom';
+import {Routes ,Route,Navigate} from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import CreateBook from './pages/CreateBook';;
 import DeleteBook from './pages/DeleteBook';
 import EditBook from './pages/EditBook';
 import Home from './pages/Home';
 import ShowBook from './pages/ShowBook';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 const App = () => {
   return (
+    <>
     <Routes>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
@@ -19,6 +21,9 @@ const App = () => {
       <Route path='/books/edit/:id' element={<ProtectedRoute><EditBook/></ProtectedRoute>}/>
       <Route path='/books/delete/:id' element={<ProtectedRoute><DeleteBook/></ProtectedRoute>}/>
     </Routes>
+    <Toaster/>
+    </>
+    
   )
 }
 

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState,useEffect } from 'react'
 import { useNavigate ,useParams} from 'react-router-dom';
 import BackButton from '../../components/BackButton';
+import { toast } from 'react-hot-toast';
+
 
 const EditBook = () => {
   const[title,setTitle]=useState('');
@@ -14,7 +16,7 @@ const EditBook = () => {
   const navigate=useNavigate()
 
   useEffect(()=>{
-    axios.get(`http://localhost:5555/books/${param.id}`,{
+    axios.get(`${import.meta.env.VITE_BACKEND_HOST_URL}/books/${param.id}`,{
       headers: {
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('token'),
@@ -36,17 +38,18 @@ const EditBook = () => {
       'Authorization': localStorage.getItem('token'),
   }}).then(()=>{
       navigate('/');
+      toast.success('Book Updated Succesfully!!!')
      }).catch((error)=>{
-      console.log(error);
+      toast.error(error.message);
      })
   }
   return (
     <>
-    <div className='p-4'>
+    <div className="flex justify-center md:items-center md:h-screen">
+    <div className='absolute top-2 left-2'>
     <BackButton/>
     </div>
-    <div className="flex justify-center items-center h-screen">
-    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" >
+    <div className="bg-white shadow-md rounded px-8 md:pt-6  pt-16 pb-8 mb-4" >
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
           Title

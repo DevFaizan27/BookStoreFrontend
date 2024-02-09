@@ -10,7 +10,7 @@ const ShowBook = () => {
 
 
   const getBook=async()=>{
-    axios.get(`http://localhost:5555/books/${param.id}`,{
+    axios.get(`${import.meta.env.VITE_BACKEND_HOST_URL}/books/${param.id}`,{
       headers: {
         'Content-Type': 'application/json',
         "Authorization": localStorage.getItem('token')
